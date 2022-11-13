@@ -315,7 +315,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-text">Hexo插入图片</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-text">Hexo插入图片</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Hexo%E6%9C%89%E5%A4%9A%E7%A7%8D%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E6%96%B9%E5%BC%8F%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%B0%86%E5%9B%BE%E7%89%87%E5%AD%98%E6%94%BE%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%BC%95%E7%94%A8%E6%88%96%E8%80%85%E5%B0%86%E5%9B%BE%E7%89%87%E6%94%BE%E5%9C%A8CDN%E4%B8%8A%E5%BC%95%E7%94%A8%E3%80%82"><span class="toc-text">Hexo有多种图片插入方式，可以将图片存放在本地引用或者将图片放在CDN上引用。</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
       </div>
     </article>
   
@@ -345,15 +345,15 @@
   <div class="tags-list">
     
       <a 
-        href="/tags/java/" 
-        title="java">
-        <div class="tags-list-item">java</div>
-      </a>
-    
-      <a 
         href="/tags/hexo/" 
         title="hexo">
         <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/java/" 
+        title="java">
+        <div class="tags-list-item">java</div>
       </a>
     
   </div>
@@ -382,7 +382,7 @@
     
     
       <span class="dot"></span>
-      <span>365 字</span>
+      <span>410 字</span>
     
   </div>
   
@@ -409,22 +409,25 @@
   <div 
     id="section" 
     class="post-content">
-    <h1 id="Hexo插入图片"><a href="#Hexo插入图片" class="headerlink" title="Hexo插入图片"></a>Hexo插入图片</h1><p>在写文章时，常常有配图说明的需求。Hexo有多种图片插入方式，可以将图片存放在本地引用或者将图片放在CDN上引用。</p>
-<p>本地引用<br>绝对路径<br>当Hexo项目中只用到少量图片时，可以将图片统一放在source&#x2F;images文件夹中，通过markdown语法访问它们。</p>
-<blockquote>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/image.jpg" class="lozad post-image"src="/images/image.jpg"></p>
-</blockquote>
+    <h1 id="Hexo插入图片"><a href="#Hexo插入图片" class="headerlink" title="Hexo插入图片"></a>Hexo插入图片</h1><p>Typora</p>
+<p>Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，即时渲染使得你写Markdown就想是写Word文档一样流畅自如，</p>
+<p>很好用！！</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/img/typora.jpg" class="lozad post-image"src="/img/typora.jpg"></p>
+<h6 id="Hexo有多种图片插入方式，可以将图片存放在本地引用或者将图片放在CDN上引用。"><a href="#Hexo有多种图片插入方式，可以将图片存放在本地引用或者将图片放在CDN上引用。" class="headerlink" title="Hexo有多种图片插入方式，可以将图片存放在本地引用或者将图片放在CDN上引用。"></a>Hexo有多种图片插入方式，可以将图片存放在本地引用或者将图片放在CDN上引用。</h6><p>本地引用<br>绝对路径<br>当Hexo项目中只用到少量图片时，可以将图片统一放在source&#x2F;images文件夹中，通过markdown语法访问它们。:</p>
+<pre class="highlight"><span class="line">![](/images/image.jpg)</span><br></pre>
+
 <p>图片既可以在首页内容中访问到，也可以在文章正文中访问到。</p>
-<p>相对路径<br>图片除了可以放在统一的images文件夹中，还可以放在文章自己的目录中。文章的目录可以通过配置_config.yml来生成。</p>
-<blockquote>
-<p>post_asset_folder: true</p>
-</blockquote>
+<p>相对路径<br>图片除了可以放在统一的images文件夹中，还可以放在文章自己的目录中。文章的目录可以通过配置_config.yml来生成。:post_asset_folder: true</p>
 <p>将_config.yml文件中的配置项post_asset_folder设为true后，执行命令$ hexo new post_name，在source&#x2F;_posts中会生成文章post_name.md和同名文件夹post_name。将图片资源放在post_name中，文章就可以使用相对路径引用图片资源了。</p>
 <blockquote>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/image.jpg" class="lozad post-image"src="/image.jpg"></p>
+<pre class="highlight"><span class="line">&gt;![](image.jpg)</span><br></pre>
+
+
 </blockquote>
 <p>上述是markdown的引用方式，图片只能在文章中显示，但无法在首页中正常显示。<br>如果希望图片在文章和首页中同时显示，可以使用标签插件语法。</p>
 <blockquote>
+<pre class="highlight"><span class="line">&gt;&#123;% asset_img image.jpg This is an image %&#125;</span><br></pre>
+
 
 </blockquote>
 <p>CDN引用<br>除了在本地存储图片，还可以将图片上传到一些免费的CDN服务中。比如Cloudinary提供的图片CDN服务，在Cloudinary中上传图片后，会生成对应的url地址，将地址直接拿来引用即可。</p>
@@ -484,7 +487,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-text">Hexo插入图片</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-text">Hexo插入图片</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Hexo%E6%9C%89%E5%A4%9A%E7%A7%8D%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E6%96%B9%E5%BC%8F%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%B0%86%E5%9B%BE%E7%89%87%E5%AD%98%E6%94%BE%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%BC%95%E7%94%A8%E6%88%96%E8%80%85%E5%B0%86%E5%9B%BE%E7%89%87%E6%94%BE%E5%9C%A8CDN%E4%B8%8A%E5%BC%95%E7%94%A8%E3%80%82"><span class="toc-text">Hexo有多种图片插入方式，可以将图片存放在本地引用或者将图片放在CDN上引用。</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
 </div>
             </main>
             <aside class="right-column">
@@ -498,7 +501,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-text">Hexo插入图片</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-text">Hexo插入图片</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Hexo%E6%9C%89%E5%A4%9A%E7%A7%8D%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5%E6%96%B9%E5%BC%8F%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%B0%86%E5%9B%BE%E7%89%87%E5%AD%98%E6%94%BE%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%BC%95%E7%94%A8%E6%88%96%E8%80%85%E5%B0%86%E5%9B%BE%E7%89%87%E6%94%BE%E5%9C%A8CDN%E4%B8%8A%E5%BC%95%E7%94%A8%E3%80%82"><span class="toc-text">Hexo有多种图片插入方式，可以将图片存放在本地引用或者将图片放在CDN上引用。</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
     </article>
   
   
