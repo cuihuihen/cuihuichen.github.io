@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="/">
-  <title>Java实现定时任务</title>
+  <title>OpenSSL SSL_read: Connection was reset, errno 10054的解决方法</title>
   
     
       <meta 
         property="og:title" 
-        content="Java实现定时任务">
+        content="OpenSSL SSL_read: Connection was reset, errno 10054的解决方法">
     
     
       <meta 
         property="og:url" 
-        content="http://example.com/2022/11/13/Java%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/index.html">
+        content="http://example.com/2022/11/14/OpenSSL-SSL-read-Connection-was-reset-errno-10054%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
     
     
       <meta 
@@ -42,10 +42,10 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2022-11-13">
+        content="2022-11-14">
       <meta 
         property="og:article:modified_time" 
-        content="2022-11-13">
+        content="2022-11-14">
       <meta 
         property="og:article:author" 
         content="玛玛哈哈">
@@ -53,7 +53,7 @@
         
           <meta 
             property="og:article:tag" 
-            content="java">
+            content="hexo">
         
       
     
@@ -315,7 +315,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-text">java定时任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Spring-Task"><span class="toc-text">使用Spring Task</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%E6%98%AF%EF%BC%9A"><span class="toc-text">其他方法是：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8java-util-Timer"><span class="toc-text">使用java.util.Timer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ScheduledExecutorService"><span class="toc-text">使用ScheduledExecutorService</span></a></li></ol></li></ol></li></ol>
+
       </div>
     </article>
   
@@ -368,21 +368,21 @@
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      Java实现定时任务
+      OpenSSL SSL_read: Connection was reset, errno 10054的解决方法
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2022-11-13T10:10:09.000Z">
+    <time datetime="2022-11-14T02:49:44.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2022-11-13</span>
+      <span>2022-11-14</span>
     </time>
     
     
       <span class="dot"></span>
-      <span>1.1k 字</span>
+      <span>99 字</span>
     
   </div>
   
@@ -397,9 +397,9 @@
         
           
           <a 
-            href="/tags/java/" 
+            href="/tags/hexo/" 
             class="post-meta-link">
-            java
+            hexo
           </a>
         
       </div>
@@ -409,66 +409,13 @@
   <div 
     id="section" 
     class="post-content">
-    <h1 id="java定时任务"><a href="#java定时任务" class="headerlink" title="java定时任务"></a>java定时任务</h1><h2 id="使用Spring-Task"><a href="#使用Spring-Task" class="headerlink" title="使用Spring Task"></a>使用Spring Task</h2><p>我百度之后有三种实现方法，我是直接通过Spring 提供的 @Scheduled 注解即可定义定时任务，保证方法每月调用一次：</p>
-<blockquote>
-<p>@Scheduled(cron&#x3D;”0 59 23 28-31 * ?”)</p>
-</blockquote>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/img/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.jpg" class="lozad post-image"src="/img/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.jpg"></p>
-<p>关于cron：cron表达式格式：{秒} {分钟} {小时} {日期} {月份} {星期} {年份(可为空)}</p>
-<blockquote>
-<p>注:</p>
-<blockquote>
-<p>“*”：代表每隔1秒钟触发<br>“,”：代表在指定的秒数触发，例如，”1,5,20”表示1秒，5秒和20秒时触发<br>“-“：代表在指定的范围内触发，例如，”15-20”表示从15秒开始触发到20秒结束触发，每隔1秒触发1次。<br>“&#x2F;“：代表指定数值的增量触发，例如，在秒域中使用”10&#x2F;15”表示每分钟内第10秒触发，后续每隔15秒触发一次。注意：这种间隔循环只在每分钟内执行，所以在第55秒执行一次后，中断每15秒的间隔循环，等到下一分钟的第10秒再次开始执行。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>【注】由于{日期}和{星期}互斥，所以其中之一被定值以后，必须对另一个设”?”</p>
-</blockquote>
-<p>Spring Task 底层是基于 JDK 的 ScheduledThreadPoolExecutor 线程池来实现的。<br>以Spring Boot来作为示例，步骤为</p>
-<p>在启动类所在包下创建Schedule 类（在没有配置@ComponentScan的情况下，Spring Boot只会默认扫描启动类所在包的spring组件）<br>在该类上添加@Component和@EnableScheduling注解<br>在方法上添加@Scheduled注解，该注解主要参数如下</p>
-<blockquote>
-<p>String cron() default “”;  &#x2F;&#x2F; 支持cron表达式</p>
-</blockquote>
-<blockquote>
-<p>long fixedDelay() default -1;  &#x2F;&#x2F; 在最后一次调用结束和下一次调用开始之间的时间间隔，以毫秒为单位<br>String fixedDelayString() default “”;  &#x2F;&#x2F; 同上，类似ScheduledExecutorService的scheduleWithFixedDelay</p>
-</blockquote>
-<blockquote>
-<p>long fixedRate() default -1;  &#x2F;&#x2F; 在调用之前的时间间隔，以毫秒为单位<br>String fixedRateString() default “”;  &#x2F;&#x2F; 同上，类似ScheduledExecutorService的scheduleAtFixedRate</p>
-</blockquote>
-<blockquote>
-<p>long initialDelay() default -1;  &#x2F;&#x2F; 在第一次执行fixedRate()或fixedDelay()任务之前要延迟的毫秒数<br>String initialDelayString() default “”;  &#x2F;&#x2F; 同上</p>
-</blockquote>
-<p>代码示例：</p>
-<blockquote>
-<p>import org.springframework.scheduling.annotation.EnableScheduling;<br>import org.springframework.scheduling.annotation.Scheduled;<br>import org.springframework.stereotype.Component;</p>
-</blockquote>
-<blockquote>
-<p>import java.time.LocalDateTime;</p>
-</blockquote>
-<blockquote>
-<p>@Component<br>@EnableScheduling<br>public class Schedule {</p>
-<blockquote>
-<p>@Scheduled(fixedRate &#x3D; 2000L)<br>public void task() {</p>
-<blockquote>
-<p>System.out.println(“当前线程：” + Thread.currentThread().getName() + “ 当前时间” + LocalDateTime.now());<br>}<br>}</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="其他方法是："><a href="#其他方法是：" class="headerlink" title="其他方法是："></a>其他方法是：</h2><h3 id="使用java-util-Timer"><a href="#使用java-util-Timer" class="headerlink" title="使用java.util.Timer"></a>使用java.util.Timer</h3><p>这种方式的定时任务主要用到两个类，Timer 和 TimerTask，使用起来比较简单。其中 Timer 负责设定 TimerTask 的起始与间隔执行时间。<br>TimerTask是一个抽象类，new的时候实现自己的 run 方法，然后将其丢给 Timer 去执行即可。<br>代码示例：</p>
-<blockquote>
-<p>import java.time.LocalDateTime;<br>import java.util.Timer;<br>import java.util.TimerTask;</p>
-</blockquote>
-<blockquote>
-<p>public class Schedule {<br>    public static void main(String[] args) {<br>       TimerTask timerTask &#x3D; new TimerTask() {<br>            @Override<br>           public void run() {<br>                System.out.println(“当前线程：” + Thread.currentThread().getName() + “ 当前时间” + LocalDateTime.now());<br>           }<br>       };<br>        &#x2F;&#x2F; 在指定延迟0毫秒后开始，随后地执行以2000毫秒间隔执行timerTask<br>       new Timer().schedule(timerTask, 0L, 2000L);<br>       System.out.println(“当前线程：” + Thread.currentThread().getName() + “ 当前时间” + LocalDateTime.now());<br>    }<br>}</p>
-</blockquote>
-<p>缺点：<br>Timer 的背后只有一个线程，不管有多少个任务，都只有一个工作线程串行执行，效率低下<br>受限于单线程，如果第一个任务逻辑上死循环了，后续的任务一个都得不到执行<br>依然是由于单线程，任一任务抛出异常后，整个 Timer 就会结束，后续任务全部都无法执行</p>
-<h3 id="使用ScheduledExecutorService"><a href="#使用ScheduledExecutorService" class="headerlink" title="使用ScheduledExecutorService"></a>使用ScheduledExecutorService</h3><p>ScheduledExecutorService 即是 Timer 的替代者，JDK 1.5 并发包引入，是基于线程池设计的定时任务类。<br>每个调度任务都会分配到线程池中的某一个线程去执行，任务就是并发调度执行的，任务之间互不影响。<br>代码示例：</p>
-<blockquote>
-<p>import java.time.LocalDateTime;<br>import java.util.concurrent.*;</p>
-</blockquote>
-<blockquote>
-<p>public class Schedule {<br>    public static void main(String[] args) {<br>        &#x2F;&#x2F; 创建一个ScheduledThreadPoolExecutor线程池，核心线程数为5<br>        ScheduledExecutorService scheduledExecutorService &#x3D; new ScheduledThreadPoolExecutor(5);<br>        &#x2F;&#x2F; 创建Runnable打印当前线程和当前时间<br>       Runnable r &#x3D; () -&gt; System.out.println(“当前线程：” + Thread.currentThread().getName() + “ 当前时间” + LocalDateTime.now());<br>        &#x2F;**<br>         * schedule：只执行一次调度<br>         * scheduleAtFixedRate：一开始就计算间隔时间，如果任务超过间隔时间，那么就直接开始下一个任务<br>         * scheduleWithFixedDelay：任务无论执行多久，都要等待上一轮任务完成之后再间隔指定时间，然后才开始下一个任务<br>         *&#x2F;<br>         &#x2F;&#x2F; 在指定1秒延迟后执行r,之后每两秒执行一次<br>        scheduledExecutorService.scheduleAtFixedRate(r, 1, 2, TimeUnit.SECONDS);<br>    }<br>}</p>
-</blockquote>
+    <p>  在执行 hexo g -d 时遇到了：<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=OpenSSL&spm=1001.2101.3001.7020">OpenSSL</a> SSL_read: Connection was reset, errno 10054，的错误提示</p>
+<p><img src="/%5Cimg%5Cbaocuo.png" alt="baocuo" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/%5Cimg%5Cbaocuo.png" class="lozad post-image"></p>
+<p>这是服务器的<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=SSL&spm=1001.2101.3001.7020">SSL</a>证书没有经过第三方机构的签署，所以报错。<br>错误原因可能是网络不稳定，连接超时造成的，如果你试了多次还是报这个错误，执行下面的命令</p>
+<pre class="highlight"><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre>
+
+<p>报错解决</p>
+<p><img src="/%5Cimg%5Cjiejue.png" alt="jiejue" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/%5Cimg%5Cjiejue.png" class="lozad post-image"></p>
 
   </div>
   <div>
@@ -488,8 +435,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://example.com/2022/11/13/Java%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
-            http://example.com/2022/11/13/Java%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/
+            href="http://example.com/2022/11/14/OpenSSL-SSL-read-Connection-was-reset-errno-10054%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+            http://example.com/2022/11/14/OpenSSL-SSL-read-Connection-was-reset-errno-10054%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -499,29 +446,15 @@
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
-      <a 
-        href="/2022/11/13/hexo%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" 
-        class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
-        <div>
-          <div class="nav-label">上一篇</div>
-          
-            <div class="nav-title">Hexo插入图片 </div>
-          
-        </div>
-      </a>
-    </div>
-  
   
     <div class="nav-item-next">
       <a 
-        href="/2022/11/09/Hexo-Github%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" 
+        href="/2022/11/14/%E5%AF%B9list%E8%BF%9B%E8%A1%8C%E5%88%86%E7%BB%84/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">Hexo+Github博客搭建 </div>
+            <div class="nav-title">对list进行分组 </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -539,7 +472,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-text">java定时任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Spring-Task"><span class="toc-text">使用Spring Task</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%E6%98%AF%EF%BC%9A"><span class="toc-text">其他方法是：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8java-util-Timer"><span class="toc-text">使用java.util.Timer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ScheduledExecutorService"><span class="toc-text">使用ScheduledExecutorService</span></a></li></ol></li></ol></li></ol>
+
 </div>
             </main>
             <aside class="right-column">
@@ -553,7 +486,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-text">java定时任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Spring-Task"><span class="toc-text">使用Spring Task</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%E6%98%AF%EF%BC%9A"><span class="toc-text">其他方法是：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8java-util-Timer"><span class="toc-text">使用java.util.Timer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ScheduledExecutorService"><span class="toc-text">使用ScheduledExecutorService</span></a></li></ol></li></ol></li></ol>
+
     </article>
   
   
