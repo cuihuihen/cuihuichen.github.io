@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="/">
-  <title>Hello World</title>
+  <title>SpringData JPA @Query 注解实现自定义查询方法</title>
   
     
       <meta 
         property="og:title" 
-        content="Hello World">
+        content="SpringData JPA @Query 注解实现自定义查询方法">
     
     
       <meta 
         property="og:url" 
-        content="http://example.com/2022/11/08/hello-world/index.html">
+        content="http://example.com/2022/11/20/SpringData-JPA-Query-%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2%E6%96%B9%E6%B3%95/index.html">
     
     
       <meta 
@@ -42,14 +42,18 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2022-11-08">
+        content="2022-11-20">
       <meta 
         property="og:article:modified_time" 
-        content="2022-11-08">
+        content="2022-11-20">
       <meta 
         property="og:article:author" 
         content="玛玛哈哈">
       
+        
+          <meta 
+            property="og:article:tag" 
+            content="SpringData">
         
       
     
@@ -311,7 +315,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringData-JPA-Query-%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2%E6%96%B9%E6%B3%95"><span class="toc-text">SpringData JPA @Query 注解实现自定义查询方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82"><span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="toc-text">实现步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Query-%E6%B3%A8%E8%A7%A3"><span class="toc-text">Query 注解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%EF%BC%89%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C"><span class="toc-text">1）查询操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C"><span class="toc-text">（2）更新操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="toc-text">（3）删除操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%B3%A8%E6%84%8F"><span class="toc-text">（4）注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%9F%A5%E8%AF%A2"><span class="toc-text">本地查询</span></a></li></ol></li></ol></li></ol>
       </div>
     </article>
   
@@ -370,41 +374,100 @@
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      Hello World
+      SpringData JPA @Query 注解实现自定义查询方法
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2022-11-08T00:10:09.420Z">
+    <time datetime="2022-11-20T02:23:42.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2022-11-08</span>
+      <span>2022-11-20</span>
     </time>
     
     
       <span class="dot"></span>
-      <span>75 字</span>
+      <span>649 字</span>
     
   </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/SpringData/" 
+            class="post-meta-link">
+            SpringData
+          </a>
+        
+      </div>
+    </div>
   
   </header>
   <div 
     id="section" 
     class="post-content">
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="highlight"><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre>
+    <h1 id="SpringData-JPA-Query-注解实现自定义查询方法"><a href="#SpringData-JPA-Query-注解实现自定义查询方法" class="headerlink" title="SpringData JPA @Query 注解实现自定义查询方法"></a>SpringData JPA @Query 注解实现自定义查询方法</h1><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>【仓库明细表】增加【关联公司】列，取值于【仓库管理】中各仓库对应的【关联公司】；增加【合作期限】列，方便显示仓库合作时间。</p>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><p>从数据库中直接取出关联公司和合作期限赋值给仓库明细表，但是由于合作期限存在多个，需要从中取出时间最近更新的一次，因此采用再数据库中查询按照时间排序取出时间最近的一次。</p>
+<p>利用@Query 注解再DAO层中访问数据库查询进行本地查询，使用原生的sql语句需要注意的是设置nativeQuery为true</p>
+<p><img src="/img/hezuodate.jpg" alt="hezuodate" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/img/hezuodate.jpg" class="lozad post-image"></p>
+<p> 这种查询可以声明在 Repository 方法中，摆脱像命名查询那样的约束，将查询直接在相应的接口方法中声明，结构更为清晰，这是 Spring data 的特有实现。</p>
+<h2 id="Query-注解"><a href="#Query-注解" class="headerlink" title="Query 注解"></a>Query 注解</h2><ul>
+<li>只需要将 <code>@Query</code> 标记在继承了 <code>Repository</code> 的自定义接口的方法上，就不需要遵循查询方法命名规则。</li>
+<li>支持命名参数及索引参数的使用</li>
+<li>本地查询</li>
+</ul>
+<p>案例</p>
+<p><img src="/img/anli1.jpg" alt="anli1" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/img/anli1.jpg" class="lozad post-image"></p>
+<h4 id="1）查询操作"><a href="#1）查询操作" class="headerlink" title="1）查询操作"></a>1）查询操作</h4><ul>
+<li>查询 ID 最大的员工信息</li>
+</ul>
+<pre class="highlight"><span class="line">@Query(&quot;select o from Employee o where id=(select max(id) from Employee t1)&quot;)</span><br><span class="line">Employee getEmployeeById();</span><br></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="highlight"><span class="line">$ hexo server</span><br></pre>
+<p><em>注意：</em> Query 语句中第一个 <code>Employee</code> 是类名。</p>
+<ul>
+<li>根据占位符进行查询</li>
+</ul>
+<p><em>注意：</em> 占位符从 <code>1</code> 开始</p>
+<pre class="highlight"><span class="line"><span class="meta">@Query(&quot;select o from Employee o where o.name=?1 and o.age=?2&quot;)</span></span><br><span class="line">List&lt;Employee&gt; <span class="title function_">queryParams1</span><span class="params">(String name, Integer age)</span>;</span><br></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="highlight"><span class="line">$ hexo generate</span><br></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="highlight"><span class="line">$ hexo deploy</span><br></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<ul>
+<li>根据命名参数的方式</li>
+</ul>
+<pre class="highlight"><span class="line"><span class="meta">@Query(&quot;select o from Employee o where o.name=:name and o.age=:age&quot;)</span></span><br><span class="line">List&lt;Employee&gt; <span class="title function_">queryParams2</span><span class="params">(<span class="meta">@Param(&quot;name&quot;)</span> String name, <span class="meta">@Param(&quot;age&quot;)</span> Integer age)</span>;</span><br></pre>
+
+
+
+<ul>
+<li>like 查询语句</li>
+</ul>
+<pre class="highlight"><span class="line"><span class="meta">@Query(&quot;select o from Employee o where o.name like %?1%&quot;)</span></span><br><span class="line">List&lt;Employee&gt; <span class="title function_">queryLike1</span><span class="params">(String name)</span>;</span><br></pre>
+
+<h4 id="（2）更新操作"><a href="#（2）更新操作" class="headerlink" title="（2）更新操作"></a>（2）更新操作</h4><ul>
+<li>在 DAO 中定义方法根据 Id 来更新年龄（<code>@Modifying</code> 注解代表允许修改）</li>
+</ul>
+<pre class="highlight"><span class="line"><span class="meta">@Modifying</span></span><br><span class="line"><span class="meta">@Query(&quot;update Employee o set o.age = :age where o.id = :id&quot;)</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">update</span><span class="params">(<span class="meta">@Param(&quot;id&quot;)</span> Integer id, <span class="meta">@Param(&quot;age&quot;)</span> Integer age)</span>;</span><br></pre>
+
+<h4 id="（3）删除操作"><a href="#（3）删除操作" class="headerlink" title="（3）删除操作"></a>（3）删除操作</h4><pre class="highlight"><span class="line"><span class="meta">@Modifying</span></span><br><span class="line"><span class="meta">@Query(&quot;delete from Employee o where o.id = :id&quot;)</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">delete</span><span class="params">(<span class="meta">@Param(&quot;id&quot;)</span> Integer id)</span>;</span><br></pre>
+
+<h4 id="（4）注意"><a href="#（4）注意" class="headerlink" title="（4）注意"></a>（4）注意</h4><blockquote>
+<p>执行更新或者删除操作是需要事物支持，所以通过 service 层来增加事物功能,在 update 方法上添加Transactional 注解。</p>
+</blockquote>
+<h3 id="本地查询"><a href="#本地查询" class="headerlink" title="本地查询"></a>本地查询</h3><p>所谓本地查询，就是使用原生的 sql 语句进行查询数据库的操作。但是在 Query 中原生态查询默认是关闭的,需要手动设置为true：</p>
+<pre class="highlight"><span class="line"><span class="meta">@Query(nativeQuery = true, value = &quot;select count(1) from employee&quot;)</span></span><br><span class="line"><span class="type">long</span> <span class="title function_">getCount</span><span class="params">()</span>;</span><br></pre>
+
+
+
 
   </div>
   <div>
@@ -424,8 +487,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://example.com/2022/11/08/hello-world/">
-            http://example.com/2022/11/08/hello-world/
+            href="http://example.com/2022/11/20/SpringData-JPA-Query-%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2%E6%96%B9%E6%B3%95/">
+            http://example.com/2022/11/20/SpringData-JPA-Query-%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2%E6%96%B9%E6%B3%95/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -435,20 +498,20 @@
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
+  
+    <div class="nav-item-next">
       <a 
-        href="/2022/11/08/cuihuichen/" 
+        href="/2022/11/14/OpenSSL-SSL-read-Connection-was-reset-errno-10054%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" 
         class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
         <div>
-          <div class="nav-label">上一篇</div>
+          <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">cuihuichen </div>
+            <div class="nav-title">OpenSSL SSL_read: Connection was reset, errno 10054的解决方法 </div>
           
         </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
       </a>
     </div>
-  
   
 </div>
 
@@ -461,7 +524,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringData-JPA-Query-%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2%E6%96%B9%E6%B3%95"><span class="toc-text">SpringData JPA @Query 注解实现自定义查询方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82"><span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="toc-text">实现步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Query-%E6%B3%A8%E8%A7%A3"><span class="toc-text">Query 注解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%EF%BC%89%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C"><span class="toc-text">1）查询操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C"><span class="toc-text">（2）更新操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="toc-text">（3）删除操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%B3%A8%E6%84%8F"><span class="toc-text">（4）注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%9F%A5%E8%AF%A2"><span class="toc-text">本地查询</span></a></li></ol></li></ol></li></ol>
 </div>
             </main>
             <aside class="right-column">
@@ -475,7 +538,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringData-JPA-Query-%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2%E6%96%B9%E6%B3%95"><span class="toc-text">SpringData JPA @Query 注解实现自定义查询方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82"><span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="toc-text">实现步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Query-%E6%B3%A8%E8%A7%A3"><span class="toc-text">Query 注解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%EF%BC%89%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C"><span class="toc-text">1）查询操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C"><span class="toc-text">（2）更新操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="toc-text">（3）删除操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%B3%A8%E6%84%8F"><span class="toc-text">（4）注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%9F%A5%E8%AF%A2"><span class="toc-text">本地查询</span></a></li></ol></li></ol></li></ol>
     </article>
   
   
