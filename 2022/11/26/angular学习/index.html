@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Hexo">
+  <link 
+    rel="icon" 
+    href="/">
+  <title>angular学习</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="angular学习">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://example.com/2022/11/26/angular%E5%AD%A6%E4%B9%A0/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="/img/touxiang.png">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-11-26">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-11-26">
+      <meta 
+        property="og:article:author" 
+        content="玛玛哈哈">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="angular">
+        
+      
+    
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  <link rel="preload" href="/css/main.css" as="style" >
+  
+  <link rel="modulepreload" href="//instant.page/5.1.0">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+  
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <a class="navbar-logo-main" href="/">
+      
+      <span class="navbar-logo-dsc">cuihuichen</span>
+      </a>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          关于
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <button 
+      class="navbar-menu-item darknavbar navbar-menu-btn" 
+      aria-label="Toggle dark mode"
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </button>
+    <button 
+      class="navbar-menu-item searchnavbar navbar-menu-btn" 
+      aria-label="Toggle search"
+      id="search">
+      <!-- <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i> -->
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        class="iconify iconify--ion" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M256 80a176 176 0 1 0 176 176A176 176 0 0 0 256 80Z"></path>
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M232 160a72 72 0 1 0 72 72a72 72 0 0 0-72-72Z"></path>
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"
+          d="M283.64 283.64L336 336"></path>
+      </svg>
+    </button>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="/img/touxiang.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">玛玛哈哈</p>
+<p class="author-description"></p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>11</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>0</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>5</span>
+    <span>标签</span>
+  </a>
+</div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#angular%E5%AD%A6%E4%B9%A0"><span class="toc-text">angular学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular%E4%BB%8B%E7%BB%8D"><span class="toc-text">Angular介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">Angular环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Angular-CLI"><span class="toc-text">安装Angular CLI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BAAngular%E9%A1%B9%E7%9B%AE"><span class="toc-text">新建Angular项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BAAngular%E9%A1%B9%E7%9B%AE-1"><span class="toc-text">新建Angular项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="toc-text">启动项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular-CLI%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="toc-text">Angular CLI简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E7%BB%84%E4%BB%B6"><span class="toc-text">新建组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-text">其他命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-text">单元测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%B5%8B%E8%AF%95"><span class="toc-text">端到端测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-text">构建应用程序</span></a></li></ol></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/java/" 
+        title="java">
+        <div class="tags-list-item">java</div>
+      </a>
+    
+      <a 
+        href="/tags/angular/" 
+        title="angular">
+        <div class="tags-list-item">angular</div>
+      </a>
+    
+      <a 
+        href="/tags/Java/" 
+        title="Java">
+        <div class="tags-list-item">Java</div>
+      </a>
+    
+      <a 
+        href="/tags/SpringData/" 
+        title="SpringData">
+        <div class="tags-list-item">SpringData</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <main class="main-column">
+              
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      angular学习
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-11-26T10:52:54.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-11-26</span>
+    </time>
+    
+    
+      <span class="dot"></span>
+      <span>1.7k 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/angular/" 
+            class="post-meta-link">
+            angular
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h1 id="angular学习"><a href="#angular学习" class="headerlink" title="angular学习"></a>angular学习</h1><h2 id="Angular介绍"><a href="#Angular介绍" class="headerlink" title="Angular介绍"></a>Angular介绍</h2><p>Angular是谷歌开发的一款开源的web前端框架，诞生于2009年，由Misko Hevery 等人创建，后为Google所收购。是一款优秀的前端JS框架，已经被用于Google的多款产品当中。 根据项目数统计angular（1.x 、2.x 、4.x、5.x、6.x、7.x 、8.x、9.x）是现在网上使用量最大的框架。</p>
+<p>Angular基于TypeScript和react、vue相比 Angular更适合中大型企业级项目。</p>
+<h2 id="Angular环境搭建"><a href="#Angular环境搭建" class="headerlink" title="Angular环境搭建"></a>Angular环境搭建</h2><p>1、安装前准备工作：</p>
+<p>1.1、安装nodejs 安装angular的计算机上面必须安装最新的nodejs–注意安装nodejs稳定版本</p>
+<p>1.2、选择一个 命令工具， npm, cnpm, yarn ,任选其一</p>
+<p>设置淘宝源镜像 ，如果你用npm</p>
+<pre class="highlight"><span class="line">npm config set registry https://registry.npm.taobao.org</span><br></pre>
+
+<p>如果你用cnpm ， 安装cnpm npm可能安装失败建议先用npm安装一下cnpm用淘宝镜像安装<a target="_blank" rel="noopener" href="https://npm.taobao.org/">https://npm.taobao.org/</a></p>
+<pre class="highlight"><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre>
+
+<p>或者 安装yarn ,注意，只要选 一个命令工具就行</p>
+<p><strong>yarn</strong></p>
+<pre class="highlight"><span class="line">npm install yarn -g</span><br></pre>
+
+<p>然后切换为淘宝源你才能感受到速度：</p>
+<pre class="highlight"><span class="line">yarn config set registry https://registry.npm.taobao.org --global``yarn config set disturl https://npm.taobao.org/dist --global</span><br></pre>
+
+<p>好了，真的很简单，它的命令与npm几乎一样：</p>
+<ul>
+<li>初始化：yarn init</li>
+<li>安装一个包：yarn add 包名</li>
+<li>更新一个包：yarn upgrade 包名</li>
+<li>删除一个包：yarn remove 包名</li>
+<li>安装所有包：yarn或者yarn install</li>
+</ul>
+<h2 id="安装Angular-CLI"><a href="#安装Angular-CLI" class="headerlink" title="安装Angular CLI"></a>安装Angular CLI</h2><ol>
+<li>全局安装typescript（可选） <code>$ npm install -g typescript </code>&#x2F;&#x2F; 新建项目的时候会自动安装typescript(非全局)所以这里也可以不用安装。</li>
+<li>全局安装Angular CLI</li>
+</ol>
+<pre class="highlight"><span class="line">yarn global add @angular/cli 或者 npm install @angular/cli -g</span><br></pre>
+
+<ul>
+<li>如果要卸载，执行下面命令： <code>yarn global remove @angular/cli</code></li>
+</ul>
+<p>经过不算漫长的等待，你的Angular CLI就装好了。确认一下：</p>
+<ul>
+<li>检验安装是否成功 ng version 或者 ng v</li>
+</ul>
+<h2 id="新建Angular项目"><a href="#新建Angular项目" class="headerlink" title="新建Angular项目"></a>新建Angular项目</h2><h3 id="新建Angular项目-1"><a href="#新建Angular项目-1" class="headerlink" title="新建Angular项目"></a>新建Angular项目</h3><p>ng new my-app</p>
+<p>如果要跳过npm i安装 ng new my-app –skip-install</p>
+<p>趁着它在下载，来看一下运行ng new之后Angular cli已经帮我们干了什么：</p>
+<p>那么，这时候Angular cli帮你干了以下这么多事情：</p>
+<ul>
+<li>创建 my-app 目录</li>
+<li>应用程序相关的源文件和目录将会被创建</li>
+<li>应用程序的所有依赖 (package.json中配置的依赖项) 将会被自动安装</li>
+<li>自动配置项目中的 TypeScript 开发环境</li>
+<li>自动配置 Karma 单元测试环境</li>
+<li>自动配置 Protractor (end-to-end) 测试环境</li>
+<li>创建 environment 相关的文件并初始化为默认的设置</li>
+</ul>
+<h3 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h3><p>安装完成之后就可以启动项目了：</p>
+<p>cd my-app &#x2F;&#x2F;进入my-app</p>
+<p>npm start 或者 ng serve &#x2F;&#x2F;启服务</p>
+<p>ng serve命令会启动开发服务器，监听文件变化，并在修改这些文件时重新构建此应用。 使用–open（或-o）参数可以自动打开浏览器并访问<a target="_blank" rel="noopener" href="http://localhost:4200/%E3%80%82">http://localhost:4200/。</a></p>
+<p>ng serve命令提供了很多参数，可以适当参考。 以下参数仅供参考：</p>
+<pre class="highlight"><span class="line">--dry-run: boolean, 默认为 false, 若设置 dry-run 则不会创建任何文件</span><br><span class="line">--verbose: boolean, 默认为 false</span><br><span class="line">--link-cli: boolean, 默认为 false, 自动链接到 @angular/cli 包</span><br><span class="line">--skip-install: boolean, 默认为 false, 表示跳过 npm install</span><br><span class="line">--skip-git: boolean, 默认为 false, 表示该目录不初始化为 git 仓库</span><br><span class="line">--skip-tests: boolean, 默认为 false, 表示不创建 tests 相关文件</span><br><span class="line">--skip-commit: boolean, 默认为 false, 表示不进行初始提交</span><br><span class="line">--directory: string, 用于设置创建的目录名，默认与应用程序的同名</span><br><span class="line">--source-dir: string, 默认为 &#x27;src&#x27;, 用于设置源文件目录的名称</span><br><span class="line">--stylring, 默认为 &#x27;css&#x27;, 用于设置选用的样式语法 (&#x27;css&#x27;, &#x27;less&#x27; or &#x27;scss&#x27;)</span><br><span class="line">--prefix: string, 默认为 &#x27;app&#x27;, 用于设置创建新组件时，组件选择器使用的前缀</span><br><span class="line">--mobile: boolean, 默认为 false,表示是否生成 Progressive Web App 应用程序</span><br><span class="line">--routing: boolean, 默认为 false, 表示新增带有路由信息的模块，并添加到根模块中</span><br><span class="line">--inline-style: boolean, 默认为 false, 表示当创建新的应用程序时，使用内联样式</span><br><span class="line">--inline-template: boolean, 默认为 false, 表示当创建新的应用程序时，使用内联模板</span><br></pre>
+
+<p>其他文件：</p>
+<pre class="highlight"><span class="line">.editorconfig： 给你的编辑器看的一个简单配置文件</span><br><span class="line">.gitignore： git 排除文件</span><br><span class="line">angular.json： angular cli 的配置文件</span><br><span class="line">package.json：npm 配置文件，项目使用到的第三方依赖包</span><br><span class="line">protractor.conf.js- ：运行 ng e2e 的时候会用到</span><br><span class="line">README.md：项目的基础文档</span><br><span class="line">tsconfig.json：TypeScript 编译器的配置</span><br><span class="line">tslint.json：运行 ng lint 时会用到</span><br></pre>
+
+<h2 id="Angular-CLI简单使用"><a href="#Angular-CLI简单使用" class="headerlink" title="Angular CLI简单使用"></a>Angular CLI简单使用</h2><h3 id="新建组件"><a href="#新建组件" class="headerlink" title="新建组件"></a>新建组件</h3><pre class="highlight"><span class="line">ng generate component news</span><br></pre>
+
+<ul>
+<li><p>installing component</p>
+<ul>
+<li>create src&#x2F;app&#x2F;great-angular&#x2F;news.component.css</li>
+<li>create src&#x2F;app&#x2F;great-angular&#x2F;news.component.html</li>
+<li>create src&#x2F;app&#x2F;great-angular&#x2F;news.component.spec.ts</li>
+<li>create src&#x2F;app&#x2F;great-angular&#x2F;news.component.ts</li>
+<li>update src&#x2F;app&#x2F;app.module.ts</li>
+</ul>
+<p>如你所见，Angular cli帮我们干了如下事情：</p>
+</li>
+<li><p>src&#x2F;app&#x2F;news 目录被创建</p>
+</li>
+<li><p>news目录下会生成以下四个文件：</p>
+</li>
+<li><p>CSS 样式文件，用于设置组件的样式</p>
+</li>
+<li><p>HTML 模板文件，用于设置组件的模板</p>
+</li>
+<li><p>TypeScript 文件，里面包含一个 组件类和组件的元信息</p>
+</li>
+<li><p>Spec 文件，包含组件相关的测试用例</p>
+</li>
+<li><p>news 组件会被自动地添加到 app.module.ts @NgModule 装饰器的 declarations 属性中。</p>
+</li>
+</ul>
+<h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h3><p>Angualr CLI提供了许多常用命令供我们选择：</p>
+<ul>
+<li>ng generate class my-new-class &#x2F;&#x2F; 新建类， 新建一个名为my-new-class的类 (class)</li>
+<li>ng generate component my-new-component &#x2F;&#x2F; 新建组件</li>
+<li>ng generate directive my-new-directive &#x2F;&#x2F; 新建指令</li>
+<li>ng generate enum my-new-enum &#x2F;&#x2F; 新建枚举</li>
+<li>ng generate module my-new-module &#x2F;&#x2F; 新建模块</li>
+<li>ng generate pipe my-new-pipe &#x2F;&#x2F; 新建管道</li>
+<li>ng generate service my-new-service &#x2F;&#x2F; 新建服务</li>
+</ul>
+<p>当然选择。。简写：</p>
+<ul>
+<li>ng g cl my-new-class &#x2F;&#x2F; 新建 class</li>
+<li>ng g c my-new-component &#x2F;&#x2F; 新建组件</li>
+<li>ng g d my-new-directive &#x2F;&#x2F; 新建指令</li>
+<li>ng g e my-new-enum &#x2F;&#x2F; 新建枚举</li>
+<li>ng g m my-new-module &#x2F;&#x2F; 新建模块</li>
+<li>ng g p my-new-pipe &#x2F;&#x2F; 新建管道</li>
+<li>ng g s my-new-service &#x2F;&#x2F; 新建服务</li>
+</ul>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><p>Angular默认集成了&#96;&#96;karma&#96;测试框架，只需要： ng test</p>
+<h3 id="端到端测试"><a href="#端到端测试" class="headerlink" title="端到端测试"></a>端到端测试</h3><p>ng e2e</p>
+<h3 id="构建应用程序"><a href="#构建应用程序" class="headerlink" title="构建应用程序"></a>构建应用程序</h3><p>ng build</p>
+<p>其中过程应该是这样的： Angular CLI 从 .angular-cli.json 文件中加载配置信息 Angular CLI 运行 Webpack 打包项目相关的 html、 CSS 等文件 打包后的资源，将被输出到配置文件中 outDir 所指定的目录，默认是输出到 dist 目录。</p>
+<p><strong>Angular开发工具介绍</strong></p>
+<p>Visual Studio Code</p>
+<p><img src="/img/angular.jpg" alt="angular" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/img/angular.jpg" class="lozad post-image"></p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            玛玛哈哈
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://example.com/2022/11/26/angular%E5%AD%A6%E4%B9%A0/">
+            http://example.com/2022/11/26/angular%E5%AD%A6%E4%B9%A0/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/11/26/List%EF%BC%9CMap%EF%BC%9CString-Object%EF%BC%9E%EF%BC%9E%E2%80%94%E2%80%94%E5%A4%9A%E5%B1%82%E5%B5%8C%E5%A5%97%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">List＜Map＜String, Object＞＞——多层嵌套的数据结构 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#angular%E5%AD%A6%E4%B9%A0"><span class="toc-text">angular学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular%E4%BB%8B%E7%BB%8D"><span class="toc-text">Angular介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">Angular环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Angular-CLI"><span class="toc-text">安装Angular CLI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BAAngular%E9%A1%B9%E7%9B%AE"><span class="toc-text">新建Angular项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BAAngular%E9%A1%B9%E7%9B%AE-1"><span class="toc-text">新建Angular项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="toc-text">启动项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular-CLI%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="toc-text">Angular CLI简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E7%BB%84%E4%BB%B6"><span class="toc-text">新建组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-text">其他命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-text">单元测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%B5%8B%E8%AF%95"><span class="toc-text">端到端测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-text">构建应用程序</span></a></li></ol></li></ol></li></ol>
+</div>
+            </main>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#angular%E5%AD%A6%E4%B9%A0"><span class="toc-text">angular学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular%E4%BB%8B%E7%BB%8D"><span class="toc-text">Angular介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">Angular环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Angular-CLI"><span class="toc-text">安装Angular CLI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BAAngular%E9%A1%B9%E7%9B%AE"><span class="toc-text">新建Angular项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BAAngular%E9%A1%B9%E7%9B%AE-1"><span class="toc-text">新建Angular项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="toc-text">启动项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular-CLI%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="toc-text">Angular CLI简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E7%BB%84%E4%BB%B6"><span class="toc-text">新建组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-text">其他命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-text">单元测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%B5%8B%E8%AF%95"><span class="toc-text">端到端测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-text">构建应用程序</span></a></li></ol></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-11-26</div>
+        <a href="/2022/11/26/angular%E5%AD%A6%E4%B9%A0/"><div class="recent-posts-item-content">angular学习</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-11-26</div>
+        <a href="/2022/11/26/List%EF%BC%9CMap%EF%BC%9CString-Object%EF%BC%9E%EF%BC%9E%E2%80%94%E2%80%94%E5%A4%9A%E5%B1%82%E5%B5%8C%E5%A5%97%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><div class="recent-posts-item-content">List＜Map＜String, Object＞＞——多层嵌套的数据结构</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-11-20</div>
+        <a href="/2022/11/20/%E6%A0%B9%E6%8D%AE%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89ID%E7%BB%93%E6%9D%9Fbpm%E5%AE%A1%E6%89%B9/"><div class="recent-posts-item-content">根据流程定义ID结束bpm审批</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-11-20</div>
+        <a href="/2022/11/20/SpringData-JPA-Query-%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2%E6%96%B9%E6%B3%95/"><div class="recent-posts-item-content">SpringData JPA @Query 注解实现自定义查询方法</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2020
+          
+          
+                - 
+                2022
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          cuihuichen
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="footer-dsc">
+        
+          Powered by
+          <a 
+            href="https://hexo.io/" 
+            class="footer-link" 
+            target="_blank" 
+            rel="nofollow noopener noreferrer">
+            &nbsp;Hexo
+          </a>
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          Theme -
+          <a 
+            href="https://github.com/theme-kaze" 
+            class="footer-link" 
+            target="_blank"
+            rel="nofollow noopener noreferrer">
+            &nbsp;Kaze
+          </a>
+        
+      </div>
+    
+    
+    
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+    
+    <script src="//instant.page/5.1.0" type="module"
+      integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    
+    
+  </body>
+</html>
